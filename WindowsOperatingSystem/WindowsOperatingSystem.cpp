@@ -5,6 +5,8 @@
 
 #include <Windows.h>
 
+PVOID MOONG::WindowsOperatingSystem::old_value_ = NULL;
+
 const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
 {
 	std::string windows_version;
@@ -23,4 +25,29 @@ const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
 	}
 
 	return windows_version;
+}
+
+const bool MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(const BOOLEAN enable)
+{
+	return Wow64EnableWow64FsRedirection(enable);
+}
+
+const bool MOONG::WindowsOperatingSystem::Disable_WOW64_Redirection()
+{
+	return Wow64DisableWow64FsRedirection(&MOONG::WindowsOperatingSystem::old_value_);
+}
+
+const bool MOONG::WindowsOperatingSystem::Revert_WOW64_Redirection()
+{
+	if (MOONG::WindowsOperatingSystem::old_value_ != NULL)
+	{
+		if (Wow64RevertWow64FsRedirection(MOONG::WindowsOperatingSystem::old_value_) == TRUE)
+		{
+			MOONG::WindowsOperatingSystem::old_value_ = NULL;
+
+			return true;
+		}
+	}
+
+	return false;
 }

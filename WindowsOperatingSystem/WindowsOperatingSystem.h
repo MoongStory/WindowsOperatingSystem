@@ -33,6 +33,8 @@ namespace MOONG
 		static const bool Enable_WOW64_Redirection(const BOOLEAN enable);
 		static const bool Disable_WOW64_Redirection();
 		static const bool Revert_WOW64_Redirection();
+
+		static const std::string CommandPromptExecute(const std::string command);
 	protected:
 	private:
 	};

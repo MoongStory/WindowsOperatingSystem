@@ -127,13 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\ConvertString\ConvertString\ConvertString.cpp" />
+    <ClCompile Include="..\..\ConvertDataType\ConvertDataType\ConvertDataType.cpp" />
     <ClCompile Include="..\..\Registry\Registry\Registry.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="WindowsOperatingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\ConvertString\ConvertString\ConvertString.h" />
+    <ClInclude Include="..\..\ConvertDataType\ConvertDataType\ConvertDataType.h" />
     <ClInclude Include="..\..\Registry\Registry\Registry.h" />
     <ClInclude Include="WindowsOperatingSystem.h" />
   </ItemGroup>

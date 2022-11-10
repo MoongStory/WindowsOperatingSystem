@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\CommandPrompt\CommandPrompt\CommandPrompt.cpp" />
     <ClCompile Include="..\..\ConvertDataType\ConvertDataType\ConvertDataType.cpp" />
     <ClCompile Include="..\..\Registry\Registry\Registry.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="WindowsOperatingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\CommandPrompt\CommandPrompt\CommandPrompt.h" />
     <ClInclude Include="..\..\ConvertDataType\ConvertDataType\ConvertDataType.h" />
     <ClInclude Include="..\..\Registry\Registry\Registry.h" />
     <ClInclude Include="WindowsOperatingSystem.h" />

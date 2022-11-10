@@ -8,7 +8,7 @@ int main()
 		MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(TRUE);
 	}
 
-	std::cout << "CommandPromptExecute[" << MOONG::WindowsOperatingSystem::CommandPromptExecute("ping www.google.com").c_str() << "]\n" << std::endl;
+	std::cout << "CommandPromptExecute[" << MOONG::WindowsOperatingSystem::command_prompt.Execute("ping www.google.com").c_str() << "]\n" << std::endl;
 
 	return 0;
 }

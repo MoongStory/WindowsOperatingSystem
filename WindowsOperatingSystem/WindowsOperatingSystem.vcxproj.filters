@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{221ef4a6-cb1c-4e94-9fd2-ac730bd98ca7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -21,22 +24,28 @@
     <ClCompile Include="WindowsOperatingSystem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Registry\Registry\Registry.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\ConvertDataType\ConvertDataType\ConvertDataType.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Registry\Registry\Registry.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CommandPrompt\CommandPrompt\CommandPrompt.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowsOperatingSystem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Registry\Registry\Registry.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\ConvertDataType\ConvertDataType\ConvertDataType.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Registry\Registry\Registry.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommandPrompt\CommandPrompt\CommandPrompt.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

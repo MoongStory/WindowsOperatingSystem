@@ -11,14 +11,11 @@
 #include <functional>
 #include <atlbase.h>
 
-#include "../../CommandPrompt/CommandPrompt/CommandPrompt.h"
-
 namespace MOONG
 {
 	class WindowsOperatingSystem
 	{
 	public:
-		static CommandPrompt command_prompt;
 	protected:
 	private:
 		static PVOID old_value_;
@@ -34,6 +31,8 @@ namespace MOONG
 
 		static const bool Enable_WOW64_Redirection(const BOOLEAN enable);
 		static const bool Disable_WOW64_Redirection();
+
+
 		static const bool Revert_WOW64_Redirection();
 	protected:
 	private:

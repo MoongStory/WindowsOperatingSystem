@@ -8,5 +8,7 @@ int main()
 		MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(TRUE);
 	}
 
+	MOONG::WindowsOperatingSystem::MessageBoxShowMostTop("test text", "test caption", MB_OK);
+
 	return 0;
 }

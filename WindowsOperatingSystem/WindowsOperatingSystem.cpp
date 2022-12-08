@@ -1,6 +1,5 @@
 #include "WindowsOperatingSystem.h"
 
-// https://github.com/MoongStory/Registry
 #include "../../Registry/Registry/Registry.h"
 
 #include <Windows.h>
@@ -29,16 +28,21 @@ const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
 
 const bool MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(const BOOLEAN enable)
 {
-	return Wow64EnableWow64FsRedirection(enable);
+	return Wow64EnableWow64FsRedirection(enable) ? true : false;
 }
 
 const bool MOONG::WindowsOperatingSystem::Disable_WOW64_Redirection()
 {
-	return Wow64DisableWow64FsRedirection(&MOONG::WindowsOperatingSystem::old_value_);
+#if _MSC_VER > 1200
+	return Wow64DisableWow64FsRedirection(&MOONG::WindowsOperatingSystem::old_value_) ? true : false;
+#else
+	return false;
+#endif
 }
 
 const bool MOONG::WindowsOperatingSystem::Revert_WOW64_Redirection()
 {
+#if _MSC_VER > 1200
 	if (MOONG::WindowsOperatingSystem::old_value_ != NULL)
 	{
 		if (Wow64RevertWow64FsRedirection(MOONG::WindowsOperatingSystem::old_value_) == TRUE)
@@ -48,8 +52,10 @@ const bool MOONG::WindowsOperatingSystem::Revert_WOW64_Redirection()
 			return true;
 		}
 	}
+#endif
 
 	return false;
+
 }
 
 const int MOONG::WindowsOperatingSystem::MessageBoxShowMostTop(const std::string text, const std::string caption, const unsigned int type)

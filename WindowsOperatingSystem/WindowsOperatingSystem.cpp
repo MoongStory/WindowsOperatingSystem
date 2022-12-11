@@ -6,6 +6,19 @@
 
 PVOID MOONG::WindowsOperatingSystem::old_value_ = NULL;
 
+const bool MOONG::WindowsOperatingSystem::GetUserName(std::string& user_name)
+{
+	char buffer[256] = { 0 };
+	DWORD size = sizeof(buffer);
+
+	// FIXME: GetUserNameEX
+	bool return_value = GetUserNameA(buffer, &size) ? true : false;
+
+	user_name = buffer;
+
+	return return_value;
+}
+
 const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
 {
 	std::string windows_version;

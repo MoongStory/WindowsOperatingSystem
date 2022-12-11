@@ -2,6 +2,15 @@
 
 int main()
 {
+	std::string user_name;
+	MOONG::WindowsOperatingSystem::GetUserName(user_name);
+	std::cout << "GetUserName[" << user_name.c_str() << "]" << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "GetWindowsProductName[" << MOONG::WindowsOperatingSystem::GetWindowsProductName().c_str() << "]\n" << std::endl;
+	MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(TRUE);
+
 	if (MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(FALSE))
 	{
 		std::cout << "GetWindowsProductName[" << MOONG::WindowsOperatingSystem::GetWindowsProductName().c_str() << "]\n" << std::endl;

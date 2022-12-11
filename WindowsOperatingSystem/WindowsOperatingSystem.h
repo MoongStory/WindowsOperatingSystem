@@ -21,6 +21,7 @@ namespace MOONG
 		static PVOID old_value_;
 
 	public:
+		static const bool GetUserName(std::string& user_name);
 		static const std::string GetWindowsProductName();
 
 		// Version Helper functions.

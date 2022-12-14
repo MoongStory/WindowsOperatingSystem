@@ -21,6 +21,10 @@ namespace MOONG
 		static PVOID old_value_;
 
 	public:
+		static const std::string GetActiveDirectoryAccount();
+		static const std::string GetDomain();
+		static const std::string GetPrimaryDomain();
+
 		static const std::string GetSidString();
 		static const bool GetUserName(std::string& user_name);
 		static const std::string GetWindowsProductName();

@@ -2,6 +2,18 @@
 
 int main()
 {
+	std::cout << "GetActiveDirectoryAccount\n\t[" << MOONG::WindowsOperatingSystem::GetActiveDirectoryAccount().c_str() << "]" << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "GetDomain\n\t[" << MOONG::WindowsOperatingSystem::GetDomain().c_str() << "]" << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "GetPrimaryDomain\n\t[" << MOONG::WindowsOperatingSystem::GetPrimaryDomain().c_str() << "]" << std::endl;
+
+	std::cout << std::endl;
+
 	std::cout << "GetSidString[" << MOONG::WindowsOperatingSystem::GetSidString().c_str() << "]" << std::endl;
 
 	std::cout << std::endl;

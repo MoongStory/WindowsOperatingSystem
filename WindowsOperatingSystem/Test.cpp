@@ -2,6 +2,10 @@
 
 int main()
 {
+	std::cout << "GetSidString[" << MOONG::WindowsOperatingSystem::GetSidString().c_str() << "]" << std::endl;
+
+	std::cout << std::endl;
+
 	std::string user_name;
 	MOONG::WindowsOperatingSystem::GetUserName(user_name);
 	std::cout << "GetUserName[" << user_name.c_str() << "]" << std::endl;
@@ -18,6 +22,8 @@ int main()
 	}
 
 	MOONG::WindowsOperatingSystem::MessageBoxShowMostTop("test text", "test caption", MB_OK);
+
+	std::cout << std::endl;
 
 	return 0;
 }

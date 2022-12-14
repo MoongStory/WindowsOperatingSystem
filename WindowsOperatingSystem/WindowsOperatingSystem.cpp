@@ -4,7 +4,71 @@
 
 #include <Windows.h>
 
+#include <sddl.h>
+#pragma comment(lib, "Advapi32.lib")
+
 PVOID MOONG::WindowsOperatingSystem::old_value_ = NULL;
+
+const std::string MOONG::WindowsOperatingSystem::GetSidString()
+{
+	USES_CONVERSION;
+
+	HANDLE hToken = NULL;
+	DWORD dwSize = 0;
+	char lpName[256] = { 0 };
+	char lpDomain[256] = { 0 };
+	DWORD dwResult = 0;
+	DWORD dwNameSize = 256;
+	PSID pSID = NULL;
+	SID_IDENTIFIER_AUTHORITY SIDAuth = SECURITY_NT_AUTHORITY;
+	PTOKEN_USER pUserInfo = { 0 };
+
+	if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken))
+	{
+		return "";
+	}
+
+	if (!GetTokenInformation(hToken, TokenUser, NULL, dwSize, &dwSize))
+	{
+		dwResult = GetLastError();
+
+		if (dwResult != ERROR_INSUFFICIENT_BUFFER)
+		{
+			CloseHandle(hToken);
+
+			return "";
+		}
+	}
+
+	pUserInfo = (PTOKEN_USER)(GlobalAlloc(GPTR, dwSize));
+	if (pUserInfo == NULL)
+	{
+		CloseHandle(hToken);
+
+		return "";
+	}
+
+	if (!GetTokenInformation(hToken, TokenUser, pUserInfo, dwSize, &dwSize))
+	{
+		CloseHandle(hToken);
+
+		return "";
+	}
+
+	LPSTR sidString;
+	ConvertSidToStringSidA(pUserInfo->User.Sid, &sidString);
+
+	std::string return_value = sidString;
+
+	if (pUserInfo)
+	{
+		GlobalFree(pUserInfo);
+	}
+
+	CloseHandle(hToken);
+
+	return return_value;
+}
 
 const bool MOONG::WindowsOperatingSystem::GetUserName(std::string& user_name)
 {

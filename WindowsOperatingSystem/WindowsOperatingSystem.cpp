@@ -3,6 +3,8 @@
 #include "../../Registry/Registry/Registry.h"
 #include "../../ConvertDataType/ConvertDataType/ConvertDataType.h"
 
+#include <fstream>
+
 #include <Windows.h>
 
 #include <sddl.h>
@@ -239,7 +241,7 @@ const std::string MOONG::WindowsOperatingSystem::GetSidString()
 	return return_value;
 }
 
-const bool MOONG::WindowsOperatingSystem::GetUserName(std::string& user_name)
+const bool MOONG::WindowsOperatingSystem::GetUserName(OUT std::string& user_name)
 {
 	char buffer[256] = { 0 };
 	DWORD size = sizeof(buffer);
@@ -271,7 +273,7 @@ const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
 	return windows_version;
 }
 
-const bool MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(const BOOLEAN enable)
+const bool MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(IN const BOOLEAN enable)
 {
 	return Wow64EnableWow64FsRedirection(enable) ? true : false;
 }
@@ -303,7 +305,22 @@ const bool MOONG::WindowsOperatingSystem::Revert_WOW64_Redirection()
 
 }
 
-const int MOONG::WindowsOperatingSystem::MessageBoxShowMostTop(const std::string text, const std::string caption, const unsigned int type)
+const int MOONG::WindowsOperatingSystem::MessageBoxShowMostTop(IN const std::string text, IN const std::string caption, IN const unsigned int type)
 {
 	return MessageBoxA(GetDesktopWindow(), text.c_str(), caption.c_str(), type | MB_SETFOREGROUND | MB_TOPMOST | MB_SYSTEMMODAL);
+}
+
+
+const HINSTANCE MOONG::WindowsOperatingSystem::FindExecutable(IN const std::string extension, OUT std::string& execute_program)
+{
+	std::ofstream create_file(std::string("dummy.") + extension);
+	create_file.close();
+
+	char temp[MAX_PATH] = { 0 };
+	HINSTANCE return_value = ::FindExecutableA(std::string(std::string("dummy.") + extension).c_str(), NULL, temp);
+	execute_program = temp;
+
+	DeleteFileA(std::string(std::string("dummy.") + extension).c_str());
+
+	return return_value;
 }

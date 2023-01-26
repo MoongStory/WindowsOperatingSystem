@@ -310,10 +310,9 @@ const int MOONG::WindowsOperatingSystem::MessageBoxShowMostTop(IN const std::str
 	return MessageBoxA(GetDesktopWindow(), text.c_str(), caption.c_str(), type | MB_SETFOREGROUND | MB_TOPMOST | MB_SYSTEMMODAL);
 }
 
-
 const HINSTANCE MOONG::WindowsOperatingSystem::FindExecutable(IN const std::string extension, OUT std::string& execute_program)
 {
-	std::ofstream create_file(std::string("dummy.") + extension);
+	std::ofstream create_file(std::string(std::string("dummy.") + extension).c_str());
 	create_file.close();
 
 	char temp[MAX_PATH] = { 0 };

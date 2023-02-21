@@ -37,9 +37,7 @@ int main()
 
 	//std::cout << std::endl;
 
-	std::string execute_program;
-	MOONG::WindowsOperatingSystem::FindExecutable("html", execute_program);
-	std::cout << "FindExecutable[" + execute_program + "]" << std::endl;
+	std::cout << "FindExecuteProgram[" << MOONG::WindowsOperatingSystem::FindExecuteProgram("html").c_str() << "]" << std::endl;
 
 	return 0;
 }

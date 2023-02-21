@@ -21,7 +21,7 @@ namespace MOONG
 		static PVOID old_value_;
 
 	public:
-		static const HINSTANCE FindExecutable(IN const std::string extension, OUT std::string& execute_program);
+		static const std::string FindExecuteProgram(IN const std::string extension);
 
 		static const std::string GetActiveDirectoryAccount();
 		static const std::string GetDomain();

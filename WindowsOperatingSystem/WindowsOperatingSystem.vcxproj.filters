@@ -33,6 +33,9 @@
     <ClCompile Include="..\..\CommandPrompt\CommandPrompt\CommandPrompt.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\StringTool\StringTool\StringTool.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowsOperatingSystem.h">
@@ -45,6 +48,9 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\CommandPrompt\CommandPrompt\CommandPrompt.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StringTool\StringTool\StringTool.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>

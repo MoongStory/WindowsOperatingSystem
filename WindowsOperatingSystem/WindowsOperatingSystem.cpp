@@ -1,5 +1,13 @@
 #include "WindowsOperatingSystem.h"
 
+#if _MSC_VER <= 1200
+	#ifndef _WIN32_WINNT
+		#define _WIN32_WINNT 0x0501
+	#endif
+
+	#define _ATL_APARTMENT_THREADED
+#endif
+
 #include "../../Registry/Registry/Registry.h"
 #include "../../ConvertDataType/ConvertDataType/ConvertDataType.h"
 
@@ -7,11 +15,16 @@
 
 #include <Windows.h>
 
-#include <sddl.h>
+#include <Sddl.h>
 #pragma comment(lib, "Advapi32.lib")	// ConvertSidToStringSid
 
 #include <DSRole.h>
 #pragma comment(lib, "netapi32.lib")    // DsRoleGetPrimaryDomainInformation
+
+#if _MSC_VER <= 1200
+	#include <shellapi.h>
+	#pragma comment(lib, "Shell32.lib")    // FindExecutable
+#endif
 
 PVOID MOONG::WindowsOperatingSystem::old_value_ = NULL;
 
@@ -275,7 +288,11 @@ const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
 
 const bool MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(IN const BOOLEAN enable)
 {
+#if _MSC_VER > 1200
 	return Wow64EnableWow64FsRedirection(enable) ? true : false;
+#else
+	return false;
+#endif
 }
 
 const bool MOONG::WindowsOperatingSystem::Disable_WOW64_Redirection()
@@ -302,7 +319,6 @@ const bool MOONG::WindowsOperatingSystem::Revert_WOW64_Redirection()
 #endif
 
 	return false;
-
 }
 
 const int MOONG::WindowsOperatingSystem::MessageBoxShowMostTop(IN const std::string text, IN const std::string caption, IN const unsigned int type)
@@ -310,16 +326,18 @@ const int MOONG::WindowsOperatingSystem::MessageBoxShowMostTop(IN const std::str
 	return MessageBoxA(GetDesktopWindow(), text.c_str(), caption.c_str(), type | MB_SETFOREGROUND | MB_TOPMOST | MB_SYSTEMMODAL);
 }
 
-const HINSTANCE MOONG::WindowsOperatingSystem::FindExecutable(IN const std::string extension, OUT std::string& execute_program)
+
+const std::string MOONG::WindowsOperatingSystem::FindExecuteProgram(IN const std::string extension)
 {
 	std::ofstream create_file(std::string(std::string("dummy.") + extension).c_str());
 	create_file.close();
 
 	char temp[MAX_PATH] = { 0 };
-	HINSTANCE return_value = ::FindExecutableA(std::string(std::string("dummy.") + extension).c_str(), NULL, temp);
-	execute_program = temp;
+	FindExecutableA(std::string(std::string("dummy.") + extension).c_str(), NULL, temp);
+
+	std::string execute_program = temp;
 
 	DeleteFileA(std::string(std::string("dummy.") + extension).c_str());
 
-	return return_value;
+	return execute_program;
 }

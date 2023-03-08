@@ -28,7 +28,7 @@
 
 PVOID MOONG::WindowsOperatingSystem::old_value_ = NULL;
 
-const std::string MOONG::WindowsOperatingSystem::GetActiveDirectoryAccount()
+const std::string MOONG::WindowsOperatingSystem::get_active_directory_account()
 {
 	USES_CONVERSION;
 
@@ -94,7 +94,7 @@ const std::string MOONG::WindowsOperatingSystem::GetActiveDirectoryAccount()
 	return lpName;
 }
 
-const std::string MOONG::WindowsOperatingSystem::GetDomain()
+const std::string MOONG::WindowsOperatingSystem::get_domain()
 {
 	USES_CONVERSION;
 
@@ -160,7 +160,7 @@ const std::string MOONG::WindowsOperatingSystem::GetDomain()
 	return lpDomain;
 }
 
-const std::string MOONG::WindowsOperatingSystem::GetPrimaryDomain()
+const std::string MOONG::WindowsOperatingSystem::get_primary_domain()
 {
 	// Âü°í - https://stackoverflow.com/questions/9792411/how-to-get-windows-domain-name
 
@@ -193,7 +193,7 @@ const std::string MOONG::WindowsOperatingSystem::GetPrimaryDomain()
 	return return_string;
 }
 
-const std::string MOONG::WindowsOperatingSystem::GetSidString()
+const std::string MOONG::WindowsOperatingSystem::get_sid_string()
 {
 	USES_CONVERSION;
 
@@ -254,7 +254,7 @@ const std::string MOONG::WindowsOperatingSystem::GetSidString()
 	return return_value;
 }
 
-const bool MOONG::WindowsOperatingSystem::GetUserName(OUT std::string& user_name)
+const bool MOONG::WindowsOperatingSystem::get_user_name(OUT std::string& user_name)
 {
 	char buffer[256] = { 0 };
 	DWORD size = sizeof(buffer);
@@ -266,17 +266,17 @@ const bool MOONG::WindowsOperatingSystem::GetUserName(OUT std::string& user_name
 	return return_value;
 }
 
-const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
+const std::string MOONG::WindowsOperatingSystem::get_windows_product_name()
 {
 	std::string windows_version;
 
 	std::string output;
-	MOONG::Registry::Read(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "ProductName", output);
+	MOONG::Registry::read(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "ProductName", output);
 
 	windows_version = output;
 
 	output.erase();
-	MOONG::Registry::Read(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "CSDVersion", output);
+	MOONG::Registry::read(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "CSDVersion", output);
 	if (output.empty() == false)
 	{
 		windows_version += " ";
@@ -286,7 +286,7 @@ const std::string MOONG::WindowsOperatingSystem::GetWindowsProductName()
 	return windows_version;
 }
 
-const bool MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(IN const BOOLEAN enable)
+const bool MOONG::WindowsOperatingSystem::enable_wow64_redirection(IN const BOOLEAN enable)
 {
 #if _MSC_VER > 1200
 	return Wow64EnableWow64FsRedirection(enable) ? true : false;
@@ -295,7 +295,7 @@ const bool MOONG::WindowsOperatingSystem::Enable_WOW64_Redirection(IN const BOOL
 #endif
 }
 
-const bool MOONG::WindowsOperatingSystem::Disable_WOW64_Redirection()
+const bool MOONG::WindowsOperatingSystem::disable_wow64_redirection()
 {
 #if _MSC_VER > 1200
 	return Wow64DisableWow64FsRedirection(&MOONG::WindowsOperatingSystem::old_value_) ? true : false;
@@ -304,7 +304,7 @@ const bool MOONG::WindowsOperatingSystem::Disable_WOW64_Redirection()
 #endif
 }
 
-const bool MOONG::WindowsOperatingSystem::Revert_WOW64_Redirection()
+const bool MOONG::WindowsOperatingSystem::revert_wow64_redirection()
 {
 #if _MSC_VER > 1200
 	if (MOONG::WindowsOperatingSystem::old_value_ != NULL)
@@ -321,13 +321,13 @@ const bool MOONG::WindowsOperatingSystem::Revert_WOW64_Redirection()
 	return false;
 }
 
-const int MOONG::WindowsOperatingSystem::MessageBoxShowMostTop(IN const std::string text, IN const std::string caption, IN const unsigned int type)
+const int MOONG::WindowsOperatingSystem::message_box_show_most_top(IN const std::string text, IN const std::string caption, IN const unsigned int type)
 {
 	return MessageBoxA(GetDesktopWindow(), text.c_str(), caption.c_str(), type | MB_SETFOREGROUND | MB_TOPMOST | MB_SYSTEMMODAL);
 }
 
 
-const std::string MOONG::WindowsOperatingSystem::FindExecuteProgram(IN const std::string extension)
+const std::string MOONG::WindowsOperatingSystem::find_execute_program(IN const std::string extension)
 {
 	std::ofstream create_file(std::string(std::string("dummy.") + extension).c_str());
 	create_file.close();

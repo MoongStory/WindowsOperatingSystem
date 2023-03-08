@@ -45,15 +45,15 @@ namespace MOONG
 		static PVOID old_value_;
 
 	public:
-		static const std::string FindExecuteProgram(IN const std::string extension);
+		static const std::string find_execute_program(IN const std::string extension);
 
-		static const std::string GetActiveDirectoryAccount();
-		static const std::string GetDomain();
-		static const std::string GetPrimaryDomain();
+		static const std::string get_active_directory_account();
+		static const std::string get_domain();
+		static const std::string get_primary_domain();
 
-		static const std::string GetSidString();
-		static const bool GetUserName(OUT std::string& user_name);
-		static const std::string GetWindowsProductName();
+		static const std::string get_sid_string();
+		static const bool get_user_name(OUT std::string& user_name);
+		static const std::string get_windows_product_name();
 
 		// Version Helper functions.
 		// https://learn.microsoft.com/en-us/windows/win32/sysinfo/version-helper-apis
@@ -61,11 +61,11 @@ namespace MOONG
 		// Windows 버전 정보.
 		// https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-osversioninfoa
 
-		static const bool Enable_WOW64_Redirection(IN const BOOLEAN enable);
-		static const bool Disable_WOW64_Redirection();
-		static const bool Revert_WOW64_Redirection();
+		static const bool enable_wow64_redirection(IN const BOOLEAN enable);
+		static const bool disable_wow64_redirection();
+		static const bool revert_wow64_redirection();
 
-		static const int MessageBoxShowMostTop(IN const std::string text, IN const std::string caption, IN const unsigned int type);
+		static const int message_box_show_most_top(IN const std::string text, IN const std::string caption, IN const unsigned int type);
 	protected:
 	private:
 	};

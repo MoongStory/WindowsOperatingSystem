@@ -326,7 +326,7 @@ const int MOONG::WindowsOperatingSystem::messagebox_show_most_top(IN const std::
 	return MessageBoxA(GetDesktopWindow(), text.c_str(), caption.c_str(), type | MB_SETFOREGROUND | MB_TOPMOST | MB_SYSTEMMODAL);
 }
 
-const bool MOONG::WindowsOperatingSystem::write_credential(const std::string& internet_or_network_address, const std::string& user_name, const std::string& password, const DWORD type/* = CRED_TYPE_GENERIC*/, const DWORD persist/* = CRED_PERSIST_LOCAL_MACHINE*/)
+const bool MOONG::WindowsOperatingSystem::credential_write(const std::string& internet_or_network_address, const std::string& user_name, const std::string& password, const DWORD type/* = CRED_TYPE_GENERIC*/, const DWORD persist/* = CRED_PERSIST_LOCAL_MACHINE*/)
 {
 	// https://learn.microsoft.com/en-us/windows/win32/api/wincred/ns-wincred-credentiala
 	CREDENTIALA credential = {0};
@@ -355,7 +355,7 @@ const bool MOONG::WindowsOperatingSystem::write_credential(const std::string& in
 	return CredWriteA(&credential, 0);
 }
 
-const bool MOONG::WindowsOperatingSystem::delete_credential(const std::string& internet_or_network_address, const DWORD type, const DWORD flags)
+const bool MOONG::WindowsOperatingSystem::credential_delete(const std::string& internet_or_network_address, const DWORD type, const DWORD flags)
 {
 	return CredDeleteA(internet_or_network_address.c_str(), type, flags);
 }

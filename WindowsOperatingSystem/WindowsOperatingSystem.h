@@ -72,10 +72,10 @@ namespace MOONG
 		// https://learn.microsoft.com/en-us/windows/win32/api/wincred/nf-wincred-credwritea
 		// 호출 시 파라미터 값 아래 링크 확인.
 		// https://learn.microsoft.com/en-us/windows/win32/api/wincred/ns-wincred-credentiala
-		static const bool write_credential(const std::string& internet_or_network_address, const std::string& user_name, const std::string& password, const DWORD type = CRED_TYPE_GENERIC, const DWORD persist = CRED_PERSIST_LOCAL_MACHINE);
+		static const bool credential_write(const std::string& internet_or_network_address, const std::string& user_name, const std::string& password, const DWORD type = CRED_TYPE_GENERIC, const DWORD persist = CRED_PERSIST_LOCAL_MACHINE);
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/wincred/nf-wincred-creddeletea
-		static const bool delete_credential(const std::string& internet_or_network_address, const DWORD type, const DWORD flags);
+		static const bool credential_delete(const std::string& internet_or_network_address, const DWORD type, const DWORD flags);
 	protected:
 	private:
 	};

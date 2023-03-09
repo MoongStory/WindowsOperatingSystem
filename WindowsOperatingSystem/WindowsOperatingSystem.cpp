@@ -355,6 +355,11 @@ const bool MOONG::WindowsOperatingSystem::write_credential(const std::string& in
 	return CredWriteA(&credential, 0);
 }
 
+const bool MOONG::WindowsOperatingSystem::delete_credential(const std::string& internet_or_network_address, const DWORD type, const DWORD flags)
+{
+	return CredDeleteA(internet_or_network_address.c_str(), type, flags);
+}
+
 
 const std::string MOONG::WindowsOperatingSystem::find_execute_program(IN const std::string extension)
 {

@@ -41,7 +41,11 @@ int main()
 
 	//std::cout << std::endl;
 
-	std::cout << "add_credential[" << (MOONG::WindowsOperatingSystem::write_credential("internet_or_network_address", "user_name", "password") == true ? "성공" : "실패") << "]" << std::endl;
+	std::cout << "add_credential[" << (MOONG::WindowsOperatingSystem::write_credential("INTERNET_OR_NETWORK_ADDRESS", "user_name", "password") == true ? "성공" : "실패") << "]" << std::endl;
+
+	system("pause");
+
+	MOONG::WindowsOperatingSystem::delete_credential("INTERNET_OR_NETWORK_ADDRESS", CRED_TYPE_GENERIC, CRED_FLAGS_PROMPT_NOW);
 
 	return 0;
 }

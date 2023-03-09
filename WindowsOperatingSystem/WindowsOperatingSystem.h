@@ -65,7 +65,7 @@ namespace MOONG
 		static const bool disable_wow64_redirection();
 		static const bool revert_wow64_redirection();
 
-		static const int message_box_show_most_top(IN const std::string text, IN const std::string caption, IN const unsigned int type);
+		static const int messagebox_show_most_top(IN const std::string text, IN const std::string caption, IN const unsigned int type);
 	protected:
 	private:
 	};

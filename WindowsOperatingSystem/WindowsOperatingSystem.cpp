@@ -321,7 +321,7 @@ const bool MOONG::WindowsOperatingSystem::revert_wow64_redirection()
 	return false;
 }
 
-const int MOONG::WindowsOperatingSystem::message_box_show_most_top(IN const std::string text, IN const std::string caption, IN const unsigned int type)
+const int MOONG::WindowsOperatingSystem::messagebox_show_most_top(IN const std::string text, IN const std::string caption, IN const unsigned int type)
 {
 	return MessageBoxA(GetDesktopWindow(), text.c_str(), caption.c_str(), type | MB_SETFOREGROUND | MB_TOPMOST | MB_SYSTEMMODAL);
 }

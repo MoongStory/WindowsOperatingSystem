@@ -37,7 +37,11 @@ int main()
 
 	//std::cout << std::endl;
 
-	std::cout << "find_execute_program[" << MOONG::WindowsOperatingSystem::find_execute_program("html").c_str() << "]" << std::endl;
+	//std::cout << "find_execute_program[" << MOONG::WindowsOperatingSystem::find_execute_program("html").c_str() << "]" << std::endl;
+
+	//std::cout << std::endl;
+
+	std::cout << "add_credential[" << (MOONG::WindowsOperatingSystem::write_credential("internet_or_network_address", "user_name", "password") == true ? "성공" : "실패") << "]" << std::endl;
 
 	return 0;
 }

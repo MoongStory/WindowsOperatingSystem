@@ -33,7 +33,8 @@ SOFTWARE.
 
 #include <iostream>
 #include <functional>
-#include <atlbase.h>
+#include <wtypes.h>
+#include <wincred.h> // CREDENTIAL, <wtypes.h>보다 밑에 include 되어야 한다.
 
 namespace MOONG
 {
@@ -66,6 +67,12 @@ namespace MOONG
 		static const bool revert_wow64_redirection();
 
 		static const int messagebox_show_most_top(IN const std::string text, IN const std::string caption, IN const unsigned int type);
+
+		// 반환 값, 에러 처리 아래 링크 확인.
+		// https://learn.microsoft.com/en-us/windows/win32/api/wincred/nf-wincred-credwritea
+		// 호출 시 파라미터 값 아래 링크 확인.
+		// https://learn.microsoft.com/en-us/windows/win32/api/wincred/ns-wincred-credentiala
+		static const bool write_credential(const std::string& internet_or_network_address, const std::string& user_name, const std::string& password, const DWORD type = CRED_TYPE_GENERIC, const DWORD persist = CRED_PERSIST_LOCAL_MACHINE);
 	protected:
 	private:
 	};

@@ -326,6 +326,35 @@ const int MOONG::WindowsOperatingSystem::messagebox_show_most_top(IN const std::
 	return MessageBoxA(GetDesktopWindow(), text.c_str(), caption.c_str(), type | MB_SETFOREGROUND | MB_TOPMOST | MB_SYSTEMMODAL);
 }
 
+const bool MOONG::WindowsOperatingSystem::write_credential(const std::string& internet_or_network_address, const std::string& user_name, const std::string& password, const DWORD type/* = CRED_TYPE_GENERIC*/, const DWORD persist/* = CRED_PERSIST_LOCAL_MACHINE*/)
+{
+	// https://learn.microsoft.com/en-us/windows/win32/api/wincred/ns-wincred-credentiala
+	CREDENTIALA credential = {0};
+
+	if (CRED_TYPE_DOMAIN_PASSWORD == type || CRED_TYPE_DOMAIN_CERTIFICATE == type)
+	{
+		credential.Flags = CRED_FLAGS_USERNAME_TARGET;
+	}
+	else
+	{
+		credential.Flags = CRED_FLAGS_PROMPT_NOW;
+	}
+	credential.Type = type;
+	credential.TargetName = const_cast<char*>(internet_or_network_address.c_str());
+	credential.Comment;
+	credential.LastWritten; // 쓰기 작업의 경우 이 값은 무시됨.
+	credential.CredentialBlobSize = static_cast<DWORD>(password.length());
+	credential.CredentialBlob = reinterpret_cast<LPBYTE>(const_cast<char*>(password.c_str()));
+	credential.Persist = persist;
+	credential.AttributeCount;
+	credential.Attributes;
+	credential.TargetAlias;
+	credential.UserName = const_cast<char*>(user_name.c_str());
+	
+	// 자격 증명 등록
+	return CredWriteA(&credential, 0);
+}
+
 
 const std::string MOONG::WindowsOperatingSystem::find_execute_program(IN const std::string extension)
 {

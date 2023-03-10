@@ -352,14 +352,13 @@ const bool MOONG::WindowsOperatingSystem::credential_write(const std::string& in
 	credential.UserName = const_cast<char*>(user_name.c_str());
 	
 	// 자격 증명 등록
-	return CredWriteA(&credential, 0);
+	return CredWriteA(&credential, 0) == TRUE ? true : false;
 }
 
 const bool MOONG::WindowsOperatingSystem::credential_delete(const std::string& internet_or_network_address, const DWORD type, const DWORD flags)
 {
-	return CredDeleteA(internet_or_network_address.c_str(), type, flags);
+	return CredDeleteA(internet_or_network_address.c_str(), type, flags) == TRUE ? true : false;
 }
-
 
 const std::string MOONG::WindowsOperatingSystem::find_execute_program(IN const std::string extension)
 {

@@ -75,7 +75,7 @@ namespace MOONG
 		static const bool credential_write(const std::string& internet_or_network_address, const std::string& user_name, const std::string& password, const DWORD type = CRED_TYPE_GENERIC, const DWORD persist = CRED_PERSIST_LOCAL_MACHINE);
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/wincred/nf-wincred-creddeletea
-		static const bool credential_delete(const std::string& internet_or_network_address, const DWORD type, const DWORD flags);
+		static const bool credential_delete(const std::string& internet_or_network_address, const DWORD type = CRED_TYPE_GENERIC);
 	protected:
 	private:
 	};

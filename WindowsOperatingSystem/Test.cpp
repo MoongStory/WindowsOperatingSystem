@@ -45,7 +45,7 @@ int main()
 
 	system("pause");
 
-	MOONG::WindowsOperatingSystem::credential_delete("INTERNET_OR_NETWORK_ADDRESS", CRED_TYPE_GENERIC, CRED_FLAGS_PROMPT_NOW);
+	std::cout << "credential_delete[" << (MOONG::WindowsOperatingSystem::credential_delete("INTERNET_OR_NETWORK_ADDRESS", CRED_TYPE_GENERIC) == true ? "성공" : "실패") << "]" << std::endl;
 
 	return 0;
 }
